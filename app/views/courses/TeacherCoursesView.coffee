@@ -49,6 +49,7 @@ module.exports = class TeacherCoursesView extends RootView
         key: level.get('original'), practice: level.get('practice') ? false, assessment: level.get('assessment') ? false
       @campaignLevelNumberMap[campaign.id] = utils.createLevelNumberMap(levels)
     @paidTeacher = @paidTeacher or @prepaids.find((p) => p.get('type') in ['course', 'starter_license'] and p.get('maxRedeemers') > 0)?
+    me.getClientCreatorPermissions()?.then(() => @render?())
     @render?()
 
   onClickGuideButton: (e) ->
